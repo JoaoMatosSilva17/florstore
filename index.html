@@ -35,6 +35,36 @@
     <link href="css/style.css" rel="stylesheet">
 </head>
 
+<script>
+  // Namespace/key: change to anything stable. Use one key per page if you want per-page counts.
+  const NAMESPACE = 'florstore_fr';
+  const KEY = 'home';
+
+  // Count once per browser (semi-unique). Remove this block if you want to count every page load.
+  const onceKey = `visited:${NAMESPACE}:${KEY}`;
+  const firstTimeHere = !localStorage.getItem(onceKey);
+
+  // Endpoints
+  const HIT = `https://api.countapi.xyz/hit/${NAMESPACE}/${KEY}`;
+  const GET = `https://api.countapi.xyz/get/${NAMESPACE}/${KEY}`;
+
+  async function updateCounter() {
+    try {
+      if (firstTimeHere) {
+        await fetch(HIT, { cache: 'no-store' });
+        localStorage.setItem(onceKey, '1');
+      }
+      const r = await fetch(GET, { cache: 'no-store' });
+      const d = await r.json();
+      document.getElementById('visit-count').textContent =
+        (d && typeof d.value === 'number') ? d.value.toLocaleString() : '0';
+    } catch {
+      document.getElementById('visit-count').textContent = '0';
+    }
+  }
+  updateCounter();
+</script>
+
 <body>
     <!-- Spinner Start -->
     <div id="spinner"
@@ -561,6 +591,7 @@
                     </div>
                     <div class="col-lg-3 col-md-6">
                         <img src="img/logo_circle.png" alt="FLORSTORE" style="height:180px; width:fit-content;" />
+                         Visits: <span id="visit-count">–</span>
                         <img alt="visits" src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fflorstore.fr&title=visits">
                     </div>
                 </div>
