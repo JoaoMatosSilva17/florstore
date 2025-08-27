@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-    
+
 
 <head>
     <meta charset="utf-8">
@@ -36,33 +36,33 @@
 </head>
 
 <script>
-  // Namespace/key: change to anything stable. Use one key per page if you want per-page counts.
-  const NAMESPACE = 'florstore_fr';
-  const KEY = 'home';
+    // Namespace/key: change to anything stable. Use one key per page if you want per-page counts.
+    const NAMESPACE = 'florstore_fr';
+    const KEY = 'home';
 
-  // Count once per browser (semi-unique). Remove this block if you want to count every page load.
-  const onceKey = `visited:${NAMESPACE}:${KEY}`;
-  const firstTimeHere = !localStorage.getItem(onceKey);
+    // Count once per browser (semi-unique). Remove this block if you want to count every page load.
+    const onceKey = `visited:${NAMESPACE}:${KEY}`;
+    const firstTimeHere = !localStorage.getItem(onceKey);
 
-  // Endpoints
-  const HIT = `https://api.countapi.xyz/hit/${NAMESPACE}/${KEY}`;
-  const GET = `https://api.countapi.xyz/get/${NAMESPACE}/${KEY}`;
+    // Endpoints
+    const HIT = `https://api.countapi.xyz/hit/${NAMESPACE}/${KEY}`;
+    const GET = `https://api.countapi.xyz/get/${NAMESPACE}/${KEY}`;
 
-  async function updateCounter() {
-    try {
-      if (firstTimeHere) {
-        await fetch(HIT, { cache: 'no-store' });
-        localStorage.setItem(onceKey, '1');
-      }
-      const r = await fetch(GET, { cache: 'no-store' });
-      const d = await r.json();
-      document.getElementById('visit-count').textContent =
-        (d && typeof d.value === 'number') ? d.value.toLocaleString() : '0';
-    } catch {
-      document.getElementById('visit-count').textContent = '0';
+    async function updateCounter() {
+        try {
+            if (firstTimeHere) {
+                await fetch(HIT, { cache: 'no-store' });
+                localStorage.setItem(onceKey, '1');
+            }
+            const r = await fetch(GET, { cache: 'no-store' });
+            const d = await r.json();
+            document.getElementById('visit-count').textContent =
+                (d && typeof d.value === 'number') ? d.value.toLocaleString() : '0';
+        } catch {
+            document.getElementById('visit-count').textContent = '0';
+        }
     }
-  }
-  updateCounter();
+    updateCounter();
 </script>
 
 <body>
@@ -290,8 +290,15 @@
                         <div class="section-title text-start">
                             <h1 class="display-5 mb-4">About Us</h1>
                         </div>
-                        <p class="mb-4 pb-2">Nous sommes une entreprise familiale qui redonne vie à de vieux meubles.
-                            Notre mission est de restaurer et de reconstruire le passé avec le sourire.</p>
+                        <p class="mb-4 pb-2">Bonjour a tous et a toutes.
+                            Nous sommes une entreprise familiale que á comme objectif le débarras et de racheter le
+                            contenu des (maisons, appartements et autres).
+                            En parallèle on restaure le mobilier ancien pour lui donner une 2éme vie.
+                            Tout ça, et au fur et mesure de nos arrivages et restaurations les articles seront visibles
+                            pour la vente en notre magasin, nos sites de réseaux sociaux et internet.
+                            N'hésitez pas à nous demander des renseignements si nécessaire.
+                            Un grand merci à tous.
+                            A bientôt</p>
                         <div class="row g-4 mb-4 pb-2">
                             <div class="col-sm-6 wow fadeIn" data-wow-delay="0.1s">
                                 <div class="d-flex align-items-center">
@@ -368,7 +375,8 @@
                             </div>
                             <div class="p-4 text-center border border-5 border-light border-top-0">
                                 <h4 class="mb-3">Services de débarras</h4>
-                                <p>Débarras de maisons, appartements ou autres, suite succession, décès, déménagement ou simplement si vous avez besoin de place.</p>
+                                <p>Débarras de maisons, appartements ou autres, suite succession, décès, déménagement ou
+                                    simplement si vous avez besoin de place.</p>
                                 <a class="fw-medium" href="#projects">En savoir plus<i
                                         class="fa fa-arrow-right ms-2"></i></a>
                             </div>
@@ -537,23 +545,23 @@
                             </div>
                         </div>
                     </div> -->
-                    <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
-                        <div class="team-item">
-                            <div class="overflow-hidden position-relative">
-                                <img class="img-fluid" src="img/team-2.jpg" alt="">
-                                <div class="team-social">
-                                    <a class="btn btn-square" href=""><i class="fab fa-facebook-f"></i></a>
-                                    <a class="btn btn-square" href=""><i class="fab fa-instagram"></i></a>
-                                </div>
+                <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
+                    <div class="team-item">
+                        <div class="overflow-hidden position-relative">
+                            <img class="img-fluid" src="img/team-2.jpg" alt="">
+                            <div class="team-social">
+                                <a class="btn btn-square" href=""><i class="fab fa-facebook-f"></i></a>
+                                <a class="btn btn-square" href=""><i class="fab fa-instagram"></i></a>
                             </div>
-                            <div class="text-center border border-5 border-light border-top-0 p-4">
-                                <h5 class="mb-0">Florence Roussel</h5>
-                                <small>Propriétaire</small>
-                            </div>
+                        </div>
+                        <div class="text-center border border-5 border-light border-top-0 p-4">
+                            <h5 class="mb-0">Florence Roussel</h5>
+                            <small>Propriétaire</small>
                         </div>
                     </div>
                 </div>
             </div>
+        </div>
         </div>
     </section>
     <!-- Team End -->
@@ -591,8 +599,9 @@
                     </div>
                     <div class="col-lg-3 col-md-6">
                         <img src="img/logo_circle.png" alt="FLORSTORE" style="height:180px; width:fit-content;" />
-                         Visits: <span id="visit-count">–</span>
-                        <img alt="visits" src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fflorstore.fr&title=visits">
+                        Visits: <span id="visit-count">–</span>
+                        <img alt="visits"
+                            src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fflorstore.fr&title=visits">
                     </div>
                 </div>
             </div>
